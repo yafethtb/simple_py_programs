@@ -1,2 +1,3 @@
 # simple_py_programs
-This is a collection of simple programs I made with python 
+## What's inside
+This repository contains my python exercise file. I'm using this repo to record my progress.
