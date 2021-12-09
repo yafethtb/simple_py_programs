@@ -7,7 +7,7 @@ coffee = resources['coffee']
 milk = resources['milk']
 water = resources['water']
 
-# ==== MENU BLOCKS ====
+# ==== MENU BLOCK ====
 # --- Ingredients of the menu ---
 def ingredients(menu_name):
     ''' Menu ingredients list '''
@@ -17,18 +17,12 @@ def ingredients(menu_name):
         'coffee': MENU[menu_name]['ingredients']['coffee']
     }
     return ingredients
-
-# --- Menu price ---
-def pricing(menu):
-    price = MENU[menu]['cost']
-    return price
-# ==== MENU BLOCKS END ====
-
+# ==== MENU BLOCK END ====
 
 # ==== INVENTORY BLOCKS ====
 # --- Inventory ---
 def inventory(water, milk, coffee):
-    '''Make dictionary based on how much resources left'''
+    '''Make dictionary based on how much resources left '''
     inventory = {
         'water' : water,
         'milk'  : milk,
@@ -38,7 +32,7 @@ def inventory(water, milk, coffee):
 
 # --- Checking Inventory ---
 def check_inventory(menu_name, inventory):
-    ''' Check if inventory sufficient to make an order'''
+    ''' Check if inventory sufficient to make an order '''
     menu_ingredient = ingredients(menu_name)
     inventory_stock = inventory
     for item in menu_ingredient:
@@ -55,15 +49,15 @@ def resource_used(coffee, milk, water, menu_name):
     water -= menu_ingredient['water']             
     return coffee, milk, water
 
-
 def resources_not_enough(inventory, cash):
+    ''' When the resources in inventory is not enough'''
     print("The resources is not enough. The machine must be refilled before use.")
     reporting = input("Would you like to prin the report? yes or no?  > ").lower()
     if reporting == 'yes' or reporting == 'y':
         report(inventory, cash)
     else:
         print("Machine off.")
-
+# ==== INVENTORY BLOCKS END ====
 
 # ==== REPORT AND PAYMENT BLOCKS ====
 # --- Report ---
@@ -74,6 +68,12 @@ def report(inventory, cash):
     print(f"Milk: {inventory['milk']} mL")       
     print(f"Water: {inventory['water']} mL")     
     print(f"Profit: $ {cash}")                  
+
+# --- Menu price ---
+def pricing(menu):
+    ''' Pricing menu '''
+    price = MENU[menu]['cost']
+    return price
 
 # ---Accept payment ---
 def payment(cost, profit):
@@ -153,7 +153,6 @@ while switch_on:
         print("Please choose one of the numbers.") 
         continue
     
-    
     # ---- Continue or no ----
     while True:
         new_order = input("Would you like to continue? yes or no?  > ").lower()
@@ -166,3 +165,4 @@ while switch_on:
             break
         else:
             print("Please enter only 'yes' or 'no'.")
+# ==== MACHINE BLOCK END ====
